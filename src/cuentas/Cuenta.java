@@ -66,8 +66,9 @@ public class Cuenta {
     }
 
     public void guardarPagos (String nombreFichero) throws FileNotFoundException {
-        PrintWriter printWriter = new PrintWriter(nombreFichero);
-        enviarPagos(printWriter);
+       try( PrintWriter printWriter = new PrintWriter(nombreFichero)) {
+           enviarPagos(printWriter);
+       }
     }
 
     public void enviarPagos (PrintWriter pw) {
